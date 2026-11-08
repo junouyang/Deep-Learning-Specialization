@@ -8,8 +8,6 @@
 
     - [ ] A neuron computes the mean of all features before applying the output to an activation function
 
-    Note: The output of a neuron is a = g(Wx + b) where g is the activation function (sigmoid, tanh, ReLU, ...).
-    
 2. Which of these is the "Logistic Loss"?
 
     - Check [here](https://en.wikipedia.org/wiki/Cross_entropy#Cross-entropy_error_function_and_logistic_regression).
@@ -18,8 +16,9 @@
     
 3. Suppose img is a (32,32,3) array, representing a 32x32 image with 3 color channels red, green and blue. How do you reshape this into a column vector?
 
-    - `x = img.reshape((32 * 32 * 3, 1))`
-    
+    - [x] `x = img.reshape((32 * 32 * 3, 1))` // row, columns in the new array
+    - [x] `x = img.reshape((-1, 1))` // auto calculated row count, columns
+
 4. Consider the two following random arrays "a" and "b":
 
     ```
@@ -29,10 +28,8 @@
     ```
     
     What will be the shape of "c"?
-    
-    b (column vector) is copied 3 times so that it can be summed to each column of a. Therefore, `c.shape = (2, 3)`.
-    
-    
+    2, 3
+
 5. Consider the two following random arrays "a" and "b":
 
     ```
@@ -42,20 +39,10 @@
     ```
     
     What will be the shape of "c"?
-    
-     "*" operator indicates element-wise multiplication. Element-wise multiplication requires same dimension between two matrices. It's going to be an error.
+    error, because a * b is element wise multiplication and requires a and b either has at least one dimention the same, or one of them to be a 1,  or a unit array
 
-6. Suppose you have n_x input features per example. Recall that X=[x^(1), x^(2)...x^(m)]. What is the dimension of X?
+6. Suppose you have n_x input features per example. Recall that X=[x^(1), x^(2)...x^(m)]. What is the dimension of X? n_x, m
 
-    `(n_x, m)`
-
-    Note: A stupid way to validate this is use the formula Z^(l) = W^(l)A^(l) when l = 1, then we have
-    
-    - A^(1) = X
-    - X.shape = (n_x, m) 
-    - Z^(1).shape = (n^(1), m)
-    - W^(1).shape = (n^(1), n_x)
-    
 7. Recall that `np.dot(a,b)` performs a matrix multiplication on a and b, whereas `a*b` performs an element-wise multiplication.
 
     Consider the two following random arrays "a" and "b":
@@ -67,9 +54,8 @@
     ```
     
     What is the shape of c?
-    
-    `c.shape = (12288, 45)`, this is a simple matrix multiplication example.
-    
+    12288, 45
+
 8. Consider the following code snippet:
 
     ```
@@ -81,8 +67,7 @@
     ```
     
     How do you vectorize this?
-
-    `c = a + b.T`
+    a + b.T
 
 9. Consider the following code:
 
@@ -92,19 +77,8 @@
     c = a * b
     ```
     
-    What will be c?
-    
-    This will invoke broadcasting, so b is copied three times to become (3,3), and ∗ is an element-wise product so `c.shape = (3, 3)`.
-    
-10. Consider the following computation graph.
+    What will be c? element wise multiplication of a by column with elements in b
 
-    ```
-    J = u + v - w
-      = a * b + a * c - (b + c)
-      = a * (b + c) - (b + c)
-      = (a - 1) * (b + c)
-    ```
-      
-    Answer: `(a - 1) * (b + c)`
+10. Consider the following computation graph. What is J in simplified form, given J = a * b + a * c - (b + c)? Answer: (a-1) * (b+c)
 
 Note: This quiz is taken from this [link](https://github.com/Kulbear/deep-learning-coursera/blob/master/Neural%20Networks%20and%20Deep%20Learning/Week%202%20Quiz%20-%20Neural%20Network%20Basics.md)
